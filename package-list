@@ -1,0 +1,7 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+
+com.mm.monkey.server.services
+com.mm.monkey.server.services.data
+com.mm.monkey.server.services.enums
+com.mm.monkey.server.services.util

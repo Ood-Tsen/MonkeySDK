@@ -1,0 +1,64 @@
+<h1 id="module-monkeysdk">Module MonkeySDK</h1>
+<p>MonkeySDK is an Android platform and toolset that lets you can build a Android app to access Vive Connect.
+MonkeySDK offers an AIDL interface to let Vive Connect to bind. And in this interface, your application may receive photos and text (via voice) from devices.</p>
+<h2 id="1-how-to-install-monkeysdk-in-your-android-project">1. How to install MonkeySDK in your Android project</h2>
+<p>  In your Android Project.</p>
+<ol>
+<li><p>Add &#39;com.mm.monkey.sdk:monkey_server:xxx&#39; in app/build.gradle</p>
+<pre><code><span class="hljs-selector-tag">api</span>("<span class="hljs-selector-tag">com</span><span class="hljs-selector-class">.mm</span><span class="hljs-selector-class">.monkey</span><span class="hljs-selector-class">.sdk</span><span class="hljs-selector-pseudo">:monkey_server</span><span class="hljs-selector-pseudo">:0.0.1-SNAPSHOT")</span>
+</code></pre></li>
+<li><p>Add queries block in AndroidManefest.xml to let Vice Connect to discover.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">queries</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.example.company.server"</span> /&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">intent</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.mm.monkey.sdk.client.action.QUERY_ART"</span> /&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">intent</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">queries</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span>
+</code></pre><p> You may replace &#39;com.mm.monkey.sdk.client.action.QUERY_ART&#39; by following category.</p>
+<ul>
+<li>&quot;com.mm.monkey.sdk.client.action.TRANSLATION&quot;</li>
+<li>&quot;com.mm.monkey.sdk.client.action.LIVE_STREAMING&quot;</li>
+<li>&quot;com.mm.monkey.sdk.client.action.FOOD_DELIVERY&quot;</li>
+<li>&quot;com.mm.monkey.sdk.client.action.TAXI_SERVICE&quot;</li>
+<li>&quot;com.mm.monkey.sdk.client.action.COOKING&quot;</li>
+<li>&quot;com.mm.monkey.sdk.client.action.QUERY_ART&quot;</li>
+<li>&quot;com.mm.monkey.sdk.client.action.OTHER&quot;</li>
+</ul>
+</li>
+<li><p>To implement a Android Service (e.q. MonkeyService) which implement com.mm.monkey.server.services.MonkeyServiceProxy</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">service</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">".services.MonkeyService"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.mm.monkey.sdk.client.action.QUERY_ART"</span> /&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">service</span>&gt;</span>
+</code></pre></li>
+</ol>
+<h3 id="2-how-to-implement-monkeyserviceproxy-">2. How to implement MonkeyServiceProxy ?</h3>
+<ol>
+<li><p>After implement MonkeyServiceProxy, you may receive photo and text via voice by following functions.</p>
+<ol>
+<li><p>processMessage(String json) is for text message.</p>
+</li>
+<li><p>processMessageAndImage(String json, MyPayload payload) is for photo and text message.</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li>You can use MonkeyCommandRequest to parse the json.<pre><code>MonkeyCommandRequest <span class="hljs-keyword">cmd</span><span class="bash"> = MonkeyCommandRequest.fromJson(json);</span>
+</code></pre></li>
+<li>After verify the text and photo, you can use MonkeyCommandResult to create a response.<pre><code><span class="hljs-attribute">String resultCmd</span> = MonkeyCommandResult.success(<span class="hljs-string">"This is a flower."</span>, Locale.ENGLISH);
+</code></pre></li>
+<li>And use notityToCaller send it back to Vice Connect.<pre><code>notityToCaller(<span class="hljs-name">json</span>,<span class="hljs-string">"processMessageAndImage"</span>,resultCmd)<span class="hljs-comment">;</span>
+</code></pre><h3 id="3-how-to-send-command-and-get-more-device-information-from-monkeysdk-">3. How to send command and get more device information from MonkeySDK ?</h3>
+</li>
+</ol>
+<p>MonkeySDK offers MonkeyServiceViewModel to hold device information and let 3rd Application to trigger command and receive Event from  device.</p>
+<p>For example, to show a new photo.</p>
+<pre><code><span class="hljs-keyword">model</span>.lastPhotoName().observeForever(photoName -&gt;{
+    <span class="hljs-built-in">Log</span>.i(TAG,<span class="hljs-string">"observeForever lastPhotoName "</span> + photoName);
+
+});
+</code></pre>
