@@ -117,7 +117,7 @@ var pathtoroot = "../../../../../";
 public class <span class="typeNameLabel"><a href=MonkeyServiceViewModel.html>MonkeyServiceViewModel</a></span>
 extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycle/AndroidViewModel.html>AndroidViewModel</a>
                     </pre>
-                    <div class="block"><p>MonkeyServiceViewModel designed to keep a device property and api interface without UI code. There are two major intents for MonkeyServiceViewModel. </p><p>1. get the MonkeyServiceViewModel </p><p>2. trigger a function to MonkeyServiceViewModel </p><p>3. observer LiveData from MonkeyServiceViewModel </p><p>How to get a MonkeyServiceViewModel:</p><pre><code>
+                    <div class="block"><p>MonkeyServiceViewModel designed to keep a device property and api interface without UI code. There are two major intents for MonkeyServiceViewModel. </p><p>1. get the MonkeyServiceViewModel </p><p>2. trigger a function to MonkeyServiceViewModel </p><p>3. observer LiveData from MonkeyServiceViewModel </p> #java,#Android, <p>How to get a MonkeyServiceViewModel:</p><pre><code>
 
    // get a MonkeyServiceViewModel from getInstance
    MonkeyServiceViewModel model = MonkeyServiceViewModel.getInstance((Application)context.getApplicationContext());
@@ -388,7 +388,7 @@ extends <a href=https://developer.android.com/reference/kotlin/androidx/lifecycl
                                         <tr id="i13" class="rowColor">
                                             <td class="colFirst"><code><a href=data/ProcessMessageInfo.html>ProcessMessageInfo</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=MonkeyServiceViewModel.html#getProcessMessage()>getProcessMessage</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=MonkeyServiceViewModel.html#removeProcessMessage()>removeProcessMessage</a>() </code>
                                             </th>
                                             <td class="colLast">getProcessMessage is a public function.</td>
                                         </tr>
@@ -909,15 +909,15 @@ text.setText(info.text);
                                     </li>
                                 </ul>
                                 
-                                <a id="getProcessMessage()">
+                                <a id="removeProcessMessage()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getProcessMessage</h4>
-                                        <pre class="methodSignature"> <a href=data/ProcessMessageInfo.html>ProcessMessageInfo</a> <a href=MonkeyServiceViewModel.html#getProcessMessage()>getProcessMessage</a>()</pre>
+                                        <h4>removeProcessMessage</h4>
+                                        <pre class="methodSignature"> <a href=data/ProcessMessageInfo.html>ProcessMessageInfo</a> <a href=MonkeyServiceViewModel.html#removeProcessMessage()>removeProcessMessage</a>()</pre>
                                         <div class="block"><p>getProcessMessage is a public function. the calling follow is </p><p>1. sendExternalAction by 3rd APP to CA.</p><p>2. addProcessMessage from CA to 3rd App.</p><p>3. getProcessMessage by 3rd APP.</p><p>4. addProcessMessageResult by 3rd.</p><p>5. getProcessMessageResult by CA.</p></div>
 
                                         <dl>

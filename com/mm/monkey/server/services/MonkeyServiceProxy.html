@@ -130,7 +130,7 @@ var pathtoroot = "../../../../../";
 public abstract class <span class="typeNameLabel"><a href=MonkeyServiceProxy.html>MonkeyServiceProxy</a></span>
 extends IMonkey.Stub
                     </pre>
-                    <div class="block"><p>The main purpose implement the IBinder for com.mm.monkey.sdk.IMonkey </p><p>How to Use:</p><p>Create a class extends from MonkeyServiceProxy </p><pre><code>
+                    <div class="block"><p>The main purpose implement the IBinder for com.mm.monkey.sdk.IMonkey #java,#Android, </p><p>How to Use:</p><p>Create a class extends from MonkeyServiceProxy </p><pre><code>
    public class MonkeyServiceImpl extends MonkeyServiceProxy{
 
    }
@@ -394,10 +394,10 @@ public class MonkeyService extends com.mm.monkey.server.services.LifeBaseService
                                         <dl>
 
                                         
-                                            <dt><span class="paramLabel">Parameters:</span></dt>
-                                            
-                                            
-                                            <dd><code>info</code> - How to Use:<pre><code>
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>RESULT_SUCCESS ,RESULT_FAILED, RESULT_PROCESSING </p><p>How to Use:</p><pre><code>
 // after extend from MonkeyServiceProxy
 public String processMessageEx(ProcessMessageInfo info) throws RemoteException {
    // get the requestMessage
@@ -406,7 +406,7 @@ public String processMessageEx(ProcessMessageInfo info) throws RemoteException {
    Locale locale = LocaleUtils.fromString(cmd.locale);
    // make an answer.
    String answerText = &quot;This is a paint&quot;;
-   // set it to ProcessMessageInfo
+   // set answer to ProcessMessageInfo
    info.setResultSuccess(answerText, locale);
    // send back to Binder
    answerFromAi(info);
@@ -414,10 +414,6 @@ public String processMessageEx(ProcessMessageInfo info) throws RemoteException {
    return RESULT_SUCCESS;
 }
 </code></pre></dd>
-                                            
-                                            
-                                        
-
                                         
 
                                         
